@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.static('images'))
 app.use(cookieParser("userOne"));
 app.get('/', (req, res) => {
     res.cookie('name', 'UserOne', { signed: true, maxAge: 1000000 });
@@ -17,7 +17,16 @@ app.get('/', (req, res) => {
     }
     res.render('index', { title: 'Home Page' });
 });
-
+app.get('/download-image', (req, res) => {
+    res.download('images/8jcw1jte.bmp', function (err) {
+        if (err) {
+            console.log('Error downloading: ', err);
+        }
+        else {
+            console.log('Success');
+        }
+    });
+});
 app.get('/about', (req, res) => {
     res.render('about', { title: 'About Us' });
 });

@@ -11,7 +11,15 @@
       <a href="/">Home</a></li>
       <a href="/about">About Us</a>
       <a href="/user/1">User One</a>
-  </nav>
+    </nav>
+    <button id="downloadButton">Download Image</button>
+    <img src="/8jcw1jte.bmp" alt="Image to download" width="300">
+    <script>
+        const downloadButton = document.getElementById('downloadButton');
+        downloadButton.addEventListener('click', () => {
+            window.location.href = '/download-image'; 
+        });
+    </script>
     <form action="/submit" method="POST">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required>
