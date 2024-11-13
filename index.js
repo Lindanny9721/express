@@ -1,13 +1,23 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
+const cookieParser = require('cookie-parser');
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cookieParser("userOne"));
 app.get('/', (req, res) => {
+    res.cookie('name', 'UserOne', { signed: true, maxAge: 1000000 });
+    const signedCookie = req.signedCookies.name;
+    if (signedCookie) {
+        console.log('Cookie value:', signedCookie);
+    } else {
+        console.log('No cookies found');
+    }
     res.render('index', { title: 'Home Page' });
 });
+
 app.get('/about', (req, res) => {
     res.render('about', { title: 'About Us' });
 });
