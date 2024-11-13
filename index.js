@@ -31,7 +31,7 @@ app.get('/about', (req, res) => {
     res.render('about', { title: 'About Us' });
 });
 app.get('/user/:userID', (req, res) => {
-    res.render('user', { title: 'User Profile', user: req.params.userID });
+    res.render('user', { title: `User ${req.params.userID}`, user: req.params.userID });
 });
 app.post('/submit', (req, res) => {
     console.log('Form:', req.body);
